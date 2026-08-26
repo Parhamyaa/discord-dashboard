@@ -1,1 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeinBot Dashboard</title>
 
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #111827;
+            color: white;
+        }
+
+        .navbar {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            background: #1f2937;
+            border-bottom: 1px solid #374151;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .login {
+            background: #5865F2;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            color: #9ca3af;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .card h2 {
+            margin-top: 0;
+        }
+
+        .card p {
+            color: #9ca3af;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">🤖 MeinBot</div>
+
+        <a class="login" href="#">
+            Mit Discord anmelden
+        </a>
+    </nav>
+
+    <main class="container">
+        <h1>Willkommen beim MeinBot Dashboard</h1>
+
+        <p class="description">
+            Verwalte deinen Discord-Bot ganz einfach über dieses Dashboard.
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+                <h2>⚙️ Einstellungen</h2>
+                <p>Verwalte die Einstellungen deines Servers.</p>
+            </div>
+
+            <div class="card">
+                <h2>🛡️ Moderation</h2>
+                <p>Verwalte Moderationsfunktionen deines Bots.</p>
+            </div>
+
+            <div class="card">
+                <h2>📜 Logs</h2>
+                <p>Konfiguriere deine Server-Logs.</p>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
