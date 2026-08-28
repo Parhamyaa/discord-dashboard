@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MeinBot Dashboard</title>
+
+    <title>PahoyaaSecurity Dashboard</title>
 
     <style>
         * {
@@ -13,7 +14,7 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: #111827;
+            background: #0b1120;
             color: white;
         }
 
@@ -23,8 +24,8 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 30px;
-            background: #1f2937;
-            border-bottom: 1px solid #374151;
+            background: #111827;
+            border-bottom: 1px solid #1e3a8a;
         }
 
         .logo {
@@ -38,6 +39,13 @@
             padding: 11px 18px;
             border-radius: 8px;
             text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .login:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
         }
 
         .container {
@@ -58,6 +66,24 @@
             margin-bottom: 40px;
         }
 
+        .invite-button {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 45px;
+            transition: 0.2s;
+        }
+
+        .invite-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
         .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -65,8 +91,8 @@
         }
 
         .card {
-            background: #1f2937;
-            border: 1px solid #374151;
+            background: #111827;
+            border: 1px solid #1e3a8a;
             border-radius: 12px;
             padding: 30px;
         }
@@ -78,44 +104,72 @@
         .card p {
             color: #9ca3af;
         }
+
+        .rp {
+            margin-top: 45px;
+            color: #60a5fa;
+            font-size: 14px;
+        }
     </style>
 </head>
 
 <body>
 
     <nav class="navbar">
-        <div class="logo">🤖 MeinBot</div>
+
+        <div class="logo">
+            🛡️ PahoyaaSecurity
+        </div>
 
         <a class="login" href="/api/auth/discord">
             Mit Discord anmelden
         </a>
+
     </nav>
 
     <main class="container">
-        <h1>Willkommen beim MeinBot Dashboard</h1>
+
+        <h1>
+            Willkommen bei PahoyaaSecurity
+        </h1>
 
         <p class="description">
-            Verwalte deinen Discord-Bot ganz einfach über dieses Dashboard.
+            Verwalte deinen Discord-Bot einfach und sicher über dein Dashboard.
         </p>
+
+        <a class="invite-button" href="/api/invite">
+            🤖 Bot auf Server hinzufügen
+        </a>
 
         <div class="cards">
 
             <div class="card">
                 <h2>⚙️ Einstellungen</h2>
-                <p>Verwalte die Einstellungen deines Servers.</p>
+                <p>
+                    Verwalte die Einstellungen deines Discord-Servers.
+                </p>
             </div>
 
             <div class="card">
                 <h2>🛡️ Moderation</h2>
-                <p>Verwalte Moderationsfunktionen deines Bots.</p>
+                <p>
+                    Verwalte Moderationsfunktionen deines Bots.
+                </p>
             </div>
 
             <div class="card">
                 <h2>📜 Logs</h2>
-                <p>Konfiguriere deine Server-Logs.</p>
+                <p>
+                    Konfiguriere deine Server-Logs.
+                </p>
             </div>
 
         </div>
+
+        <div class="rp">
+            Gelsenkirschen-Rp
+        </div>
+
     </main>
 
 </body>
