@@ -1,351 +1,352 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PahoyaaSecurity Dashboard</title>
+<title>PahoyaaSecurity Dashboard</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
+*{box-sizing:border-box}
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0b1120;
-            color: white;
-        }
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#0b1120;
+color:white;
+}
 
-        .navbar {
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
-            background: #111827;
-            border-bottom: 1px solid #1e3a8a;
-        }
+.navbar{
+height:70px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 30px;
+background:#111827;
+border-bottom:1px solid #1e3a8a;
+}
 
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-        }
+.logo{
+font-size:22px;
+font-weight:bold;
+}
 
-        .login {
-            background: #5865F2;
-            color: white;
-            padding: 11px 18px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.2s;
-        }
+.login{
+background:#5865F2;
+color:white;
+padding:11px 18px;
+border-radius:8px;
+text-decoration:none;
+font-weight:bold;
+}
 
-        .login:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
+.dashboard{
+max-width:1200px;
+margin:45px auto;
+padding:20px;
+}
 
-        .dashboard {
-            max-width: 1200px;
-            margin: 45px auto;
-            padding: 20px;
-        }
+.welcome h1{
+font-size:36px;
+}
 
-        .welcome {
-            margin-bottom: 35px;
-        }
+.welcome p{
+color:#9ca3af;
+}
 
-        .welcome h1 {
-            font-size: 36px;
-            margin: 0 0 10px;
-        }
+.server-box,
+.card{
+background:#111827;
+border:1px solid #1e3a8a;
+border-radius:12px;
+}
 
-        .welcome p {
-            color: #9ca3af;
-            font-size: 17px;
-            margin: 0;
-        }
+.server-box{
+padding:20px;
+margin:30px 0;
+}
 
-        .server-box {
-            background: #111827;
-            border: 1px solid #1e3a8a;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 30px;
-        }
+.server-select{
+width:100%;
+padding:14px;
+background:#0b1120;
+color:white;
+border-radius:8px;
+border:1px solid #374151;
+}
 
-        .server-box h2 {
-            margin-top: 0;
-        }
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:18px;
+}
 
-        .server-select {
-            width: 100%;
-            padding: 14px;
-            background: #0b1120;
-            color: white;
-            border: 1px solid #374151;
-            border-radius: 8px;
-            font-size: 16px;
-        }
+.card{
+padding:24px;
+transition:.2s;
+}
 
-        .section-title {
-            margin: 30px 0 18px;
-            font-size: 22px;
-        }
+.card:hover{
+transform:translateY(-3px);
+border-color:#3b82f6;
+}
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 18px;
-        }
+.card-icon{
+font-size:30px;
+}
 
-        .card {
-            background: #111827;
-            border: 1px solid #1e3a8a;
-            border-radius: 12px;
-            padding: 24px;
-            transition: 0.2s;
-        }
+.card h3{
+font-size:20px;
+}
 
-        .card:hover {
-            transform: translateY(-3px);
-            border-color: #3b82f6;
-        }
+.card p{
+color:#9ca3af;
+}
 
-        .card-icon {
-            font-size: 30px;
-            margin-bottom: 12px;
-        }
+.status{
+display:inline-block;
+margin-top:15px;
+padding:5px 10px;
+border-radius:20px;
+background:#064e3b;
+color:#6ee7b7;
+font-size:13px;
+}
 
-        .card h3 {
-            margin: 0 0 8px;
-            font-size: 20px;
-        }
+.invite-button{
+display:inline-block;
+margin-top:30px;
+background:#2563eb;
+color:white;
+padding:14px 22px;
+border-radius:9px;
+text-decoration:none;
+font-weight:bold;
+}
 
-        .card p {
-            color: #9ca3af;
-            margin: 0;
-            line-height: 1.5;
-        }
+.footer{
+text-align:center;
+margin:50px;
+color:#6b7280;
+}
+</style>
 
-        .status {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 5px 10px;
-            border-radius: 20px;
-            background: #064e3b;
-            color: #6ee7b7;
-            font-size: 13px;
-            font-weight: bold;
-        }
-
-        .invite-button {
-            display: inline-block;
-            background: #2563eb;
-            color: white;
-            padding: 14px 22px;
-            border-radius: 9px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 25px;
-            transition: 0.2s;
-        }
-
-        .invite-button:hover {
-            background: #1d4ed8;
-            transform: translateY(-2px);
-        }
-
-        .footer {
-            text-align: center;
-            color: #6b7280;
-            margin: 50px 0 20px;
-            font-size: 14px;
-        }
-    </style>
 </head>
 
 <body>
 
-    <nav class="navbar">
+<nav class="navbar">
 
-        <div class="logo">
-            🛡️ PahoyaaSecurity
-        </div>
+<div class="logo">
+🛡️ PahoyaaSecurity
+</div>
 
-        <a class="login" href="/api/auth/discord">
-            Mit Discord anmelden
-        </a>
+<a class="login" href="/api/auth/discord">
+Mit Discord anmelden
+</a>
 
-    </nav>
-
-
-    <main class="dashboard">
-
-        <div class="welcome">
-            <h1>🏠 PahoyaaSecurity Dashboard</h1>
-
-            <p>
-                Verwalte deinen Discord-Server und konfiguriere deinen Bot.
-            </p>
-        </div>
+</nav>
 
 
-        <div class="server-box">
-
-            <h2>🖥️ Server auswählen</h2>
-
-            <select class="server-select">
-                <option>Bitte zuerst mit Discord anmelden</option>
-            </select>
-
-        </div>
+<main class="dashboard">
 
 
-        <h2 class="section-title">
-            📊 Übersicht
-        </h2>
+<div class="welcome">
+
+<h1>
+🏠 PahoyaaSecurity Dashboard
+</h1>
+
+<p>
+Verwalte deinen Discord-Server und konfiguriere deinen Bot.
+</p>
+
+</div>
 
 
-        <div class="cards">
+<div class="server-box">
 
-            <div class="card">
-                <div class="card-icon">🛡️</div>
+<h2>🖥️ Server auswählen</h2>
 
-                <h3>Anti-Nuke</h3>
+<select class="server-select">
+<option>Bitte zuerst mit Discord anmelden</option>
+</select>
 
-                <p>
-                    Schützt deinen Server vor gefährlichen Admin-Aktionen
-                    und missbräuchlichen Änderungen.
-                </p>
-
-                <span class="status">
-                    AKTIV
-                </span>
-            </div>
+</div>
 
 
-            <div class="card">
-                <div class="card-icon">🚨</div>
-
-                <h3>Anti-Raid</h3>
-
-                <p>
-                    Erkennt verdächtige Join-Wellen und schützt deinen Server
-                    vor Raid-Angriffen.
-                </p>
-
-                <span class="status">
-                    AKTIV
-                </span>
-            </div>
+<h2>
+📊 Übersicht
+</h2>
 
 
-            <div class="card">
-                <div class="card-icon">🎫</div>
-
-                <h3>Tickets</h3>
-
-                <p>
-                    Verwalte dein Support-System und deine Ticket-Einstellungen.
-                </p>
-
-                <span class="status">
-                    AKTIV
-                </span>
-            </div>
+<div class="cards">
 
 
-            <div class="card">
-                <div class="card-icon">🔐</div>
+<a href="antinuke.html" style="text-decoration:none;color:white">
+<div class="card">
 
-                <h3>Verify</h3>
+<div class="card-icon">🛡️</div>
 
-                <p>
-                    Konfiguriere das Verifizierungssystem für deinen Discord-Server.
-                </p>
+<h3>Anti-Nuke</h3>
 
-                <span class="status">
-                    AKTIV
-                </span>
-            </div>
+<p>
+Schützt deinen Server vor gefährlichen Admin-Aktionen.
+</p>
 
+<span class="status">
+AKTIV
+</span>
 
-            <div class="card">
-                <div class="card-icon">🤖</div>
-
-                <h3>AutoMod</h3>
-
-                <p>
-                    Verwalte automatische Moderation und den Spam-Schutz.
-                </p>
-
-                <span class="status">
-                    AKTIV
-                </span>
-            </div>
+</div>
+</a>
 
 
-            <div class="card">
-                <div class="card-icon">💤</div>
 
-                <h3>AFK</h3>
+<div class="card">
 
-                <p>
-                    Verwalte das automatische AFK-System deines Servers.
-                </p>
+<div class="card-icon">🚨</div>
 
-                <span class="status">
-                    AKTIV
-                </span>
-            </div>
+<h3>Anti-Raid</h3>
 
+<p>
+Erkennt Raid-Angriffe und schützt deinen Server.
+</p>
 
-            <div class="card">
-                <div class="card-icon">🎉</div>
+<span class="status">
+AKTIV
+</span>
 
-                <h3>Giveaways</h3>
-
-                <p>
-                    Verwalte deine Giveaway-Funktionen und Einstellungen.
-                </p>
-
-                <span class="status">
-                    AKTIV
-                </span>
-            </div>
+</div>
 
 
-            <div class="card">
-                <div class="card-icon">📋</div>
 
-                <h3>Templates</h3>
+<a href="tickets.html" style="text-decoration:none;color:white">
 
-                <p>
-                    Verwalte Vorlagen für deinen Discord-Server.
-                </p>
+<div class="card">
 
-                <span class="status">
-                    AKTIV
-                </span>
-            </div>
+<div class="card-icon">🎫</div>
 
-        </div>
+<h3>Tickets</h3>
+
+<p>
+Verwalte dein Support-System.
+</p>
+
+<span class="status">
+AKTIV
+</span>
+
+</div>
+
+</a>
 
 
-        <a class="invite-button" href="/api/invite">
-            🤖 Bot auf Server hinzufügen
-        </a>
+
+<div class="card">
+
+<div class="card-icon">🔐</div>
+
+<h3>Verify</h3>
+
+<p>
+Verifizierungssystem verwalten.
+</p>
+
+<span class="status">
+AKTIV
+</span>
+
+</div>
 
 
-        <div class="footer">
-            🛡️ PahoyaaSecurity
-        </div>
 
-    </main>
+<div class="card">
+
+<div class="card-icon">🤖</div>
+
+<h3>AutoMod</h3>
+
+<p>
+Automatische Moderation.
+</p>
+
+<span class="status">
+AKTIV
+</span>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-icon">💤</div>
+
+<h3>AFK</h3>
+
+<p>
+AFK-System verwalten.
+</p>
+
+<span class="status">
+AKTIV
+</span>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-icon">🎉</div>
+
+<h3>Giveaways</h3>
+
+<p>
+Giveaway Funktionen.
+</p>
+
+<span class="status">
+AKTIV
+</span>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-icon">📋</div>
+
+<h3>Templates</h3>
+
+<p>
+Server Vorlagen verwalten.
+</p>
+
+<span class="status">
+AKTIV
+</span>
+
+</div>
+
+
+</div>
+
+
+
+<a class="invite-button" href="/api/invite">
+🤖 Bot auf Server hinzufügen
+</a>
+
+
+<div class="footer">
+🛡️ PahoyaaSecurity
+</div>
+
+
+</main>
 
 </body>
 </html>
