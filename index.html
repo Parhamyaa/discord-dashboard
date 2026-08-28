@@ -209,7 +209,6 @@ Mit Discord anmelden
 </nav>
 
 
-
 <main class="dashboard">
 
 
@@ -225,6 +224,8 @@ Verwalte deinen Discord-Server und konfiguriere deinen Bot.
 
 </div>
 
+
+
 <div class="server-box">
 
 <h2>
@@ -232,18 +233,16 @@ Verwalte deinen Discord-Server und konfiguriere deinen Bot.
 </h2>
 
 
-<select class="server-select">
+<select class="server-select" id="server-select">
 
 <option>
-Bitte zuerst mit Discord anmelden
+Server werden geladen...
 </option>
 
 </select>
 
+
 </div>
-
-
-
 
 <h2>
 📊 Übersicht
@@ -408,7 +407,7 @@ AKTIV
 <h3>Templates</h3>
 
 <p>
-Erstelle Server-Aufbau Vorlagen mit Rollen und Kanälen.
+Erstelle Server-Aufbau Vorlagen.
 </p>
 
 <span class="status">
@@ -417,7 +416,6 @@ AKTIV
 
 </div>
 </a>
-
 
 
 </div>
@@ -430,7 +428,6 @@ AKTIV
 
 
 
-
 <div class="footer">
 🛡️ PahoyaaSecurity
 </div>
@@ -440,7 +437,11 @@ AKTIV
 </main>
 
 
+
 <script>
+
+
+// User Name oben rechts anzeigen
 
 fetch("/api/user")
 .then(res => res.json())
@@ -459,12 +460,73 @@ fetch("/api/user")
 
     }
 
+});
+
+
+
+
+// Discord Server laden
+
+fetch("/api/guilds")
+.then(res => res.json())
+.then(data => {
+
+
+    const select = document.getElementById("server-select");
+
+
+    select.innerHTML = "";
+
+
+    if(data.servers){
+
+
+        data.servers.forEach(server => {
+
+
+            const option = document.createElement("option");
+
+
+            option.value = server.id;
+
+            option.textContent = server.name;
+
+
+            select.appendChild(option);
+
+
+        });
+
+
+    } else {
+
+
+        select.innerHTML = `
+        <option>
+        Keine Server gefunden
+        </option>
+        `;
+
+
+    }
+
+
 })
 .catch(error => {
 
+
     console.log(error);
 
+
+    document.getElementById("server-select").innerHTML = `
+    <option>
+    Fehler beim Laden
+    </option>
+    `;
+
+
 });
+
 
 
 </script>
