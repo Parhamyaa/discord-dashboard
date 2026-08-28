@@ -48,34 +48,109 @@
             opacity: 0.9;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 60px auto;
+        .dashboard {
+            max-width: 1200px;
+            margin: 45px auto;
             padding: 20px;
-            text-align: center;
         }
 
-        h1 {
-            font-size: 42px;
-            margin-bottom: 15px;
+        .welcome {
+            margin-bottom: 35px;
         }
 
-        .description {
+        .welcome h1 {
+            font-size: 36px;
+            margin: 0 0 10px;
+        }
+
+        .welcome p {
             color: #9ca3af;
-            font-size: 18px;
-            margin-bottom: 40px;
+            font-size: 17px;
+            margin: 0;
+        }
+
+        .server-box {
+            background: #111827;
+            border: 1px solid #1e3a8a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .server-box h2 {
+            margin-top: 0;
+        }
+
+        .server-select {
+            width: 100%;
+            padding: 14px;
+            background: #0b1120;
+            color: white;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .section-title {
+            margin: 30px 0 18px;
+            font-size: 22px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: #111827;
+            border: 1px solid #1e3a8a;
+            border-radius: 12px;
+            padding: 24px;
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: #3b82f6;
+        }
+
+        .card-icon {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+            font-size: 20px;
+        }
+
+        .card p {
+            color: #9ca3af;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background: #064e3b;
+            color: #6ee7b7;
+            font-size: 13px;
+            font-weight: bold;
         }
 
         .invite-button {
             display: inline-block;
             background: #2563eb;
             color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
+            padding: 14px 22px;
+            border-radius: 9px;
             text-decoration: none;
-            font-size: 17px;
             font-weight: bold;
-            margin-bottom: 45px;
+            margin-top: 25px;
             transition: 0.2s;
         }
 
@@ -84,30 +159,10 @@
             transform: translateY(-2px);
         }
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: #111827;
-            border: 1px solid #1e3a8a;
-            border-radius: 12px;
-            padding: 30px;
-        }
-
-        .card h2 {
-            margin-top: 0;
-        }
-
-        .card p {
-            color: #9ca3af;
-        }
-
-        .rp {
-            margin-top: 45px;
-            color: #60a5fa;
+        .footer {
+            text-align: center;
+            color: #6b7280;
+            margin: 50px 0 20px;
             font-size: 14px;
         }
     </style>
@@ -127,47 +182,167 @@
 
     </nav>
 
-    <main class="container">
 
-        <h1>
-            Willkommen bei PahoyaaSecurity
-        </h1>
+    <main class="dashboard">
 
-        <p class="description">
-            Verwalte deinen Discord-Bot einfach und sicher über dein Dashboard.
-        </p>
+        <div class="welcome">
+            <h1>🏠 PahoyaaSecurity Dashboard</h1>
+
+            <p>
+                Verwalte deinen Discord-Server und konfiguriere deinen Bot.
+            </p>
+        </div>
+
+
+        <div class="server-box">
+
+            <h2>🖥️ Server auswählen</h2>
+
+            <select class="server-select">
+                <option>Bitte zuerst mit Discord anmelden</option>
+            </select>
+
+        </div>
+
+
+        <h2 class="section-title">
+            📊 Übersicht
+        </h2>
+
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-icon">🛡️</div>
+
+                <h3>Anti-Nuke</h3>
+
+                <p>
+                    Schützt deinen Server vor gefährlichen Admin-Aktionen
+                    und missbräuchlichen Änderungen.
+                </p>
+
+                <span class="status">
+                    AKTIV
+                </span>
+            </div>
+
+
+            <div class="card">
+                <div class="card-icon">🚨</div>
+
+                <h3>Anti-Raid</h3>
+
+                <p>
+                    Erkennt verdächtige Join-Wellen und schützt deinen Server
+                    vor Raid-Angriffen.
+                </p>
+
+                <span class="status">
+                    AKTIV
+                </span>
+            </div>
+
+
+            <div class="card">
+                <div class="card-icon">🎫</div>
+
+                <h3>Tickets</h3>
+
+                <p>
+                    Verwalte dein Support-System und deine Ticket-Einstellungen.
+                </p>
+
+                <span class="status">
+                    AKTIV
+                </span>
+            </div>
+
+
+            <div class="card">
+                <div class="card-icon">🔐</div>
+
+                <h3>Verify</h3>
+
+                <p>
+                    Konfiguriere das Verifizierungssystem für deinen Discord-Server.
+                </p>
+
+                <span class="status">
+                    AKTIV
+                </span>
+            </div>
+
+
+            <div class="card">
+                <div class="card-icon">🤖</div>
+
+                <h3>AutoMod</h3>
+
+                <p>
+                    Verwalte automatische Moderation und den Spam-Schutz.
+                </p>
+
+                <span class="status">
+                    AKTIV
+                </span>
+            </div>
+
+
+            <div class="card">
+                <div class="card-icon">💤</div>
+
+                <h3>AFK</h3>
+
+                <p>
+                    Verwalte das automatische AFK-System deines Servers.
+                </p>
+
+                <span class="status">
+                    AKTIV
+                </span>
+            </div>
+
+
+            <div class="card">
+                <div class="card-icon">🎉</div>
+
+                <h3>Giveaways</h3>
+
+                <p>
+                    Verwalte deine Giveaway-Funktionen und Einstellungen.
+                </p>
+
+                <span class="status">
+                    AKTIV
+                </span>
+            </div>
+
+
+            <div class="card">
+                <div class="card-icon">📋</div>
+
+                <h3>Templates</h3>
+
+                <p>
+                    Verwalte Vorlagen für deinen Discord-Server.
+                </p>
+
+                <span class="status">
+                    AKTIV
+                </span>
+            </div>
+
+        </div>
+
 
         <a class="invite-button" href="/api/invite">
             🤖 Bot auf Server hinzufügen
         </a>
 
-        <div class="cards">
 
-            <div class="card">
-                <h2>⚙️ Einstellungen</h2>
-                <p>
-                    Verwalte die Einstellungen deines Discord-Servers.
-                </p>
-            </div>
-
-            <div class="card">
-                <h2>🛡️ Moderation</h2>
-                <p>
-                    Verwalte Moderationsfunktionen deines Bots.
-                </p>
-            </div>
-
-            <div class="card">
-                <h2>📜 Logs</h2>
-                <p>
-                    Konfiguriere deine Server-Logs.
-                </p>
-            </div>
-
-        </div>
-
-        <div class="rp">
-            Gelsenkirschen-Rp
+        <div class="footer">
+            🛡️ PahoyaaSecurity
         </div>
 
     </main>
