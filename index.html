@@ -192,6 +192,7 @@ margin:50px;
 
 <nav class="navbar">
 
+
 <div class="logo">
 🛡️ PahoyaaSecurity
 </div>
@@ -209,7 +210,9 @@ Mit Discord anmelden
 </nav>
 
 
+
 <main class="dashboard">
+
 
 
 <div class="welcome">
@@ -218,15 +221,19 @@ Mit Discord anmelden
 🏠 PahoyaaSecurity Dashboard
 </h1>
 
+
 <p>
 Verwalte deinen Discord-Server und konfiguriere deinen Bot.
 </p>
+
 
 </div>
 
 
 
+
 <div class="server-box">
+
 
 <h2>
 🖥️ Server auswählen
@@ -247,7 +254,6 @@ Server werden geladen...
 <h2>
 📊 Übersicht
 </h2>
-
 
 
 <div class="cards">
@@ -293,7 +299,6 @@ AKTIV
 
 
 
-
 <a href="tickets.html" style="text-decoration:none;color:white">
 <div class="card">
 
@@ -311,7 +316,6 @@ AKTIV
 
 </div>
 </a>
-
 
 
 
@@ -335,7 +339,6 @@ AKTIV
 
 
 
-
 <a href="automod.html" style="text-decoration:none;color:white">
 <div class="card">
 
@@ -353,7 +356,6 @@ AKTIV
 
 </div>
 </a>
-
 
 
 
@@ -377,7 +379,6 @@ AKTIV
 
 
 
-
 <a href="giveaways.html" style="text-decoration:none;color:white">
 <div class="card">
 
@@ -395,7 +396,6 @@ AKTIV
 
 </div>
 </a>
-
 
 
 
@@ -441,7 +441,7 @@ AKTIV
 <script>
 
 
-// User Name oben rechts anzeigen
+// Name oben rechts anzeigen
 
 fetch("/api/user")
 .then(res => res.json())
@@ -465,7 +465,7 @@ fetch("/api/user")
 
 
 
-// Discord Server laden
+// Server laden
 
 fetch("/api/guilds")
 .then(res => res.json())
@@ -498,31 +498,53 @@ fetch("/api/guilds")
         });
 
 
-    } else {
+
+        // gespeicherten Server laden
+
+        fetch("/api/selected-server")
+        .then(res => res.json())
+        .then(saved => {
 
 
-        select.innerHTML = `
-        <option>
-        Keine Server gefunden
-        </option>
-        `;
+            if(saved.serverId){
+
+                select.value = saved.serverId;
+
+            }
+
+
+        });
 
 
     }
 
 
-})
-.catch(error => {
+});
 
 
-    console.log(error);
 
 
-    document.getElementById("server-select").innerHTML = `
-    <option>
-    Fehler beim Laden
-    </option>
-    `;
+// Server speichern wenn geändert
+
+document.getElementById("server-select")
+.addEventListener("change", function(){
+
+
+    fetch("/api/selected-server", {
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+
+            serverId:this.value
+
+        })
+
+    });
 
 
 });
