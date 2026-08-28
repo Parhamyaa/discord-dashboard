@@ -2,6 +2,7 @@ export default async function handler(req, res) {
 
     const { code } = req.query;
 
+
     if (!code) {
         return res.status(400).send("Kein Discord-Code vorhanden.");
     }
@@ -21,7 +22,7 @@ export default async function handler(req, res) {
 
     try {
 
-        // Code gegen Access Token tauschen
+        // Discord Token holen
 
         const tokenResponse = await fetch(
             "https://discord.com/api/oauth2/token",
@@ -44,6 +45,7 @@ export default async function handler(req, res) {
                     redirect_uri: redirectUri
 
                 })
+
             }
         );
 
@@ -56,7 +58,7 @@ export default async function handler(req, res) {
             return res.status(400).send(
                 `
                 <h1>Discord Login Fehler</h1>
-                <pre>${JSON.stringify(tokenData,null,2)}</pre>
+                <pre>${JSON.stringify(tokenData, null, 2)}</pre>
                 `
             );
 
@@ -64,7 +66,7 @@ export default async function handler(req, res) {
 
 
 
-        // Discord User laden
+        // Discord Benutzer holen
 
         const userResponse = await fetch(
             "https://discord.com/api/users/@me",
@@ -84,14 +86,33 @@ export default async function handler(req, res) {
         if (!userResponse.ok) {
 
             return res.status(400).send(
-                "Discord User konnte nicht geladen werden."
+                "Discord Benutzer konnte nicht geladen werden."
             );
 
         }
 
 
 
-        // Login erfolgreich -> zurück zum Dashboard
+        // Login Cookie speichern
+
+        const session = Buffer.from(
+            JSON.stringify({
+                id: user.id,
+                username: user.username,
+                avatar: user.avatar
+            })
+        ).toString("base64");
+
+
+
+        res.setHeader(
+            "Set-Cookie",
+            `pahoyaa_session=${session}; Path=/; HttpOnly; SameSite=Lax; Max-Age=86400`
+        );
+
+
+
+        // zurück zum Dashboard
 
         return res.redirect(302, "/");
 
