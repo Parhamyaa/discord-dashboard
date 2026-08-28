@@ -49,6 +49,15 @@ font-weight:bold;
 }
 
 
+.user-box{
+background:#2563eb;
+color:white;
+padding:11px 18px;
+border-radius:8px;
+font-weight:bold;
+}
+
+
 .dashboard{
 max-width:1200px;
 margin:45px auto;
@@ -188,9 +197,13 @@ margin:50px;
 </div>
 
 
+<div id="user-area">
+
 <a class="login" href="/api/auth/discord">
 Mit Discord anmelden
 </a>
+
+</div>
 
 
 </nav>
@@ -211,8 +224,6 @@ Verwalte deinen Discord-Server und konfiguriere deinen Bot.
 </p>
 
 </div>
-
-
 
 <div class="server-box">
 
@@ -240,13 +251,10 @@ Bitte zuerst mit Discord anmelden
 
 
 
-
 <div class="cards">
 
 
-
 <a href="antinuke.html" style="text-decoration:none;color:white">
-
 <div class="card">
 
 <div class="card-icon">🛡️</div>
@@ -262,14 +270,11 @@ AKTIV
 </span>
 
 </div>
-
 </a>
 
 
 
-
 <a href="antiraid.html" style="text-decoration:none;color:white">
-
 <div class="card">
 
 <div class="card-icon">🚨</div>
@@ -285,15 +290,12 @@ AKTIV
 </span>
 
 </div>
-
 </a>
 
 
 
 
-
 <a href="tickets.html" style="text-decoration:none;color:white">
-
 <div class="card">
 
 <div class="card-icon">🎫</div>
@@ -309,15 +311,12 @@ AKTIV
 </span>
 
 </div>
-
 </a>
 
 
 
 
-
 <a href="verify.html" style="text-decoration:none;color:white">
-
 <div class="card">
 
 <div class="card-icon">🔐</div>
@@ -333,15 +332,12 @@ AKTIV
 </span>
 
 </div>
-
 </a>
 
 
 
 
-
 <a href="automod.html" style="text-decoration:none;color:white">
-
 <div class="card">
 
 <div class="card-icon">🤖</div>
@@ -357,15 +353,12 @@ AKTIV
 </span>
 
 </div>
-
 </a>
 
 
 
 
-
 <a href="afk.html" style="text-decoration:none;color:white">
-
 <div class="card">
 
 <div class="card-icon">💤</div>
@@ -381,15 +374,12 @@ AKTIV
 </span>
 
 </div>
-
 </a>
 
 
 
 
-
 <a href="giveaways.html" style="text-decoration:none;color:white">
-
 <div class="card">
 
 <div class="card-icon">🎉</div>
@@ -405,15 +395,12 @@ AKTIV
 </span>
 
 </div>
-
 </a>
 
 
 
 
-
 <a href="templates.html" style="text-decoration:none;color:white">
-
 <div class="card">
 
 <div class="card-icon">📋</div>
@@ -429,7 +416,6 @@ AKTIV
 </span>
 
 </div>
-
 </a>
 
 
@@ -452,6 +438,37 @@ AKTIV
 
 
 </main>
+
+
+<script>
+
+fetch("/api/user")
+.then(res => res.json())
+.then(data => {
+
+    const area = document.getElementById("user-area");
+
+
+    if(data.loggedIn){
+
+        area.innerHTML = `
+        <div class="user-box">
+        👤 ${data.user.username}
+        </div>
+        `;
+
+    }
+
+})
+.catch(error => {
+
+    console.log(error);
+
+});
+
+
+</script>
+
 
 
 </body>
