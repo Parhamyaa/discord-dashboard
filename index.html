@@ -95,14 +95,29 @@ height:55px;
 padding:14px;
 
 background:#0b1120;
-
 color:white;
 
 border:1px solid #374151;
-
 border-radius:8px;
 
 font-size:16px;
+
+}
+
+
+
+.bot-status{
+
+margin-top:15px;
+padding:12px;
+
+background:#0b1120;
+
+border:1px solid #1e3a8a;
+
+border-radius:8px;
+
+color:#9ca3af;
 
 }
 
@@ -222,6 +237,7 @@ margin:50px;
 
 }
 
+
 </style>
 
 </head>
@@ -232,6 +248,7 @@ margin:50px;
 
 <nav class="navbar">
 
+
 <div class="logo">
 🛡️ PahoyaaSecurity
 </div>
@@ -240,9 +257,7 @@ margin:50px;
 <div id="user-area">
 
 <a class="login" href="/api/auth/discord">
-
 Mit Discord anmelden
-
 </a>
 
 </div>
@@ -269,6 +284,7 @@ Verwalte deinen Discord-Server und konfiguriere deinen Bot.
 </div>
 
 
+
 <div class="server-box">
 
 
@@ -286,6 +302,13 @@ Server werden geladen...
 </select>
 
 
+<div class="bot-status" id="bot-status">
+
+🤖 Bot Status: Wird geprüft...
+
+</div>
+
+
 </div>
 
 
@@ -296,8 +319,8 @@ Server werden geladen...
 
 <div class="cards">
 
-<a href="antinuke.html" style="text-decoration:none;color:white">
 
+<a href="antinuke.html" style="text-decoration:none;color:white">
 <div class="card">
 
 <div class="card-icon">🛡️</div>
@@ -313,13 +336,9 @@ AKTIV
 </span>
 
 </div>
-
 </a>
 
-
-
 <a href="antiraid.html" style="text-decoration:none;color:white">
-
 <div class="card">
 
 <div class="card-icon">🚨</div>
@@ -335,13 +354,10 @@ AKTIV
 </span>
 
 </div>
-
 </a>
 
 
-
 <a href="tickets.html" style="text-decoration:none;color:white">
-
 <div class="card">
 
 <div class="card-icon">🎫</div>
@@ -357,13 +373,10 @@ AKTIV
 </span>
 
 </div>
-
 </a>
 
 
-
 <a href="verify.html" style="text-decoration:none;color:white">
-
 <div class="card">
 
 <div class="card-icon">🔐</div>
@@ -379,13 +392,10 @@ AKTIV
 </span>
 
 </div>
-
 </a>
 
 
-
 <a href="automod.html" style="text-decoration:none;color:white">
-
 <div class="card">
 
 <div class="card-icon">🤖</div>
@@ -401,13 +411,10 @@ AKTIV
 </span>
 
 </div>
-
 </a>
 
 
-
 <a href="afk.html" style="text-decoration:none;color:white">
-
 <div class="card">
 
 <div class="card-icon">💤</div>
@@ -423,13 +430,10 @@ AKTIV
 </span>
 
 </div>
-
 </a>
 
 
-
 <a href="giveaways.html" style="text-decoration:none;color:white">
-
 <div class="card">
 
 <div class="card-icon">🎉</div>
@@ -445,13 +449,10 @@ AKTIV
 </span>
 
 </div>
-
 </a>
 
 
-
 <a href="templates.html" style="text-decoration:none;color:white">
-
 <div class="card">
 
 <div class="card-icon">📋</div>
@@ -467,7 +468,6 @@ AKTIV
 </span>
 
 </div>
-
 </a>
 
 
@@ -476,22 +476,17 @@ AKTIV
 
 
 <a class="invite-button" href="/api/invite">
-
 🤖 Bot auf Server hinzufügen
-
 </a>
 
 
 
 <div class="footer">
-
 🛡️ PahoyaaSecurity
-
 </div>
 
 
 </main>
-
 
 
 
@@ -502,9 +497,9 @@ AKTIV
 
 fetch("/api/user")
 
-.then(res => res.json())
+.then(res=>res.json())
 
-.then(data => {
+.then(data=>{
 
 
 const area=document.getElementById("user-area");
@@ -529,8 +524,7 @@ area.innerHTML=`
 
 
 
-
-// Server laden + gespeicherten Server setzen
+// Server laden
 
 fetch("/api/guilds")
 
@@ -556,7 +550,6 @@ let option=document.createElement("option");
 
 option.value=server.id;
 
-
 option.textContent=server.name;
 
 
@@ -564,7 +557,6 @@ select.appendChild(option);
 
 
 });
-
 
 
 // gespeicherten Server laden
@@ -580,6 +572,8 @@ if(saved.serverId){
 
 select.value=saved.serverId;
 
+checkBot(saved.serverId);
+
 }
 
 
@@ -589,29 +583,12 @@ select.value=saved.serverId;
 }
 
 
-})
-
-.catch(()=>{
-
-
-document.getElementById("server-select").innerHTML=`
-
-<option>
-Fehler beim Laden
-</option>
-
-`;
-
-
 });
 
 
 
 
-
-
-
-// Server speichern
+// Server wechseln
 
 document.getElementById("server-select")
 
@@ -637,12 +614,71 @@ serverId:this.value
 });
 
 
+checkBot(this.value);
+
+
 });
 
 
 
-</script>
 
+
+// Bot Status prüfen
+
+function checkBot(serverId){
+
+
+fetch(`/api/server-status?serverId=${serverId}`)
+
+.then(res=>res.json())
+
+.then(data=>{
+
+
+const box=document.getElementById("bot-status");
+
+
+if(data.botInServer){
+
+
+box.innerHTML=
+`✅ Bot ist auf <b>${data.name}</b> verbunden`;
+
+
+box.style.color="#6ee7b7";
+
+
+}
+
+else{
+
+
+box.innerHTML=
+"❌ Bot ist nicht auf diesem Server";
+
+
+box.style.color="#f87171";
+
+
+}
+
+
+})
+
+.catch(()=>{
+
+
+document.getElementById("bot-status").innerHTML=
+"⚠️ Status konnte nicht geprüft werden";
+
+
+});
+
+
+}
+
+
+</script>
 
 
 </body>
