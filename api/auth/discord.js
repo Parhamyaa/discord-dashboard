@@ -1,12 +1,14 @@
 export default function handler(req, res) {
     const clientId = process.env.DISCORD_CLIENT_ID;
+    const redirectUri = process.env.DISCORD_REDIRECT_URI;
 
     if (!clientId) {
         return res.status(500).send("DISCORD_CLIENT_ID fehlt.");
     }
 
-    const redirectUri =
-        "https://discord-dashboard-f817z7dpm-mein-bot.vercel.app/api/auth/callback";
+    if (!redirectUri) {
+        return res.status(500).send("DISCORD_REDIRECT_URI fehlt.");
+    }
 
     const params = new URLSearchParams({
         client_id: clientId,

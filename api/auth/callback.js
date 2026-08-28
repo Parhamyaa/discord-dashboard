@@ -7,14 +7,11 @@ export default async function handler(req, res) {
 
     const clientId = process.env.DISCORD_CLIENT_ID;
     const clientSecret = process.env.DISCORD_CLIENT_SECRET;
+    const redirectUri = process.env.DISCORD_REDIRECT_URI;
 
-    // Muss exakt mit Discord Developer Portal übereinstimmen
-    const redirectUri =
-        "https://discord-dashboard-f817z7dpm-mein-bot.vercel.app/api/auth/callback";
-
-    if (!clientId || !clientSecret) {
+    if (!clientId || !clientSecret || !redirectUri) {
         return res.status(500).send(
-            "DISCORD_CLIENT_ID oder DISCORD_CLIENT_SECRET fehlt."
+            "DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET oder DISCORD_REDIRECT_URI fehlt."
         );
     }
 
@@ -68,16 +65,36 @@ export default async function handler(req, res) {
             <head>
                 <meta charset="UTF-8">
                 <title>Login erfolgreich</title>
+                <style>
+                    body {
+                        background: #111827;
+                        color: white;
+                        font-family: Arial, sans-serif;
+                        text-align: center;
+                        padding-top: 100px;
+                    }
+
+                    .box {
+                        background: #1f2937;
+                        padding: 40px;
+                        border-radius: 15px;
+                        display: inline-block;
+                    }
+                </style>
             </head>
             <body>
-                <h1>✅ Login erfolgreich!</h1>
-                <p>Willkommen, ${user.username}!</p>
+                <div class="box">
+                    <h1>✅ Login erfolgreich!</h1>
+                    <p>Willkommen, ${user.username}!</p>
+                </div>
             </body>
             </html>
         `);
 
     } catch (error) {
         console.error(error);
-        return res.status(500).send("Interner Fehler beim Discord Login.");
+        return res.status(500).send(
+            "Interner Fehler beim Discord Login."
+        );
     }
 }
