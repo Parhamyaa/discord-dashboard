@@ -8,6 +8,7 @@
 
 <title>PahoyaaSecurity - Anti-Nuke</title>
 
+
 <style>
 
 body{
@@ -17,7 +18,9 @@ background:#0b1120;
 color:white;
 }
 
+
 .navbar{
+
 height:70px;
 display:flex;
 align-items:center;
@@ -25,71 +28,115 @@ justify-content:space-between;
 padding:0 30px;
 background:#111827;
 border-bottom:1px solid #1e3a8a;
+
 }
+
 
 .logo{
+
 font-size:22px;
 font-weight:bold;
+
 }
 
+
+
 .back{
+
 background:#2563eb;
 color:white;
 text-decoration:none;
 padding:10px 18px;
 border-radius:8px;
+
 }
 
+
+
 .container{
+
 max-width:900px;
 margin:50px auto;
 padding:20px;
+
 }
 
+
+
 .box{
+
 background:#111827;
 border:1px solid #1e3a8a;
 border-radius:12px;
 padding:25px;
+margin-bottom:20px;
+
 }
+
+
 
 h1{
+
 font-size:36px;
+
 }
 
+
+
 label{
+
 display:block;
 margin-top:20px;
 margin-bottom:8px;
 color:#9ca3af;
+
 }
 
+
+
 select,input{
+
 width:100%;
 padding:12px;
 background:#0b1120;
 color:white;
 border:1px solid #374151;
 border-radius:8px;
+
 }
 
+
+
 .toggle{
+
 display:flex;
 justify-content:space-between;
 align-items:center;
+
 }
+
+
 
 input[type="checkbox"]{
+
 width:20px;
 height:20px;
+
 }
+
+
 
 .status{
+
 color:#6ee7b7;
 font-weight:bold;
+
 }
 
+
+
 button{
+
 margin-top:25px;
 background:#2563eb;
 color:white;
@@ -98,15 +145,23 @@ padding:14px 25px;
 border-radius:8px;
 font-weight:bold;
 cursor:pointer;
+
 }
 
+
+
 button:hover{
+
 background:#1d4ed8;
+
 }
+
 
 </style>
 
+
 </head>
+
 
 
 <body>
@@ -114,24 +169,34 @@ background:#1d4ed8;
 
 <nav class="navbar">
 
+
 <div class="logo">
+
 🛡️ Anti-Nuke Einstellungen
+
 </div>
 
 
 <a class="back" href="index.html">
+
 ⬅ Zurück
+
 </a>
 
+
 </nav>
+
 
 
 
 <div class="container">
 
 
+
 <h1>
+
 🛡️ Anti-Nuke
+
 </h1>
 
 
@@ -139,64 +204,102 @@ background:#1d4ed8;
 <div class="box">
 
 
+
 <h2>
+
 Server Schutz
+
 </h2>
 
 
 
+
 <p>
+
 Status:
+
 <span class="status">
+
 AKTIV
+
 </span>
+
 </p>
+
 
 
 
 <div class="toggle">
 
+
 <label>
+
 Anti-Nuke aktivieren
+
 </label>
 
+
 <input id="enabled" type="checkbox" checked>
+
 
 </div>
 
 
 
 
+
 <label>
+
 Schutz aktiv für
+
 </label>
+
 
 
 <select id="duration">
 
+
 <option value="1">
+
 1 Stunde
+
 </option>
+
 
 <option value="6">
+
 6 Stunden
+
 </option>
+
 
 <option value="12">
+
 12 Stunden
+
 </option>
+
 
 <option value="24">
+
 24 Stunden
+
 </option>
+
 
 <option value="168">
+
 7 Tage
+
 </option>
 
+
 <option value="0">
+
 Dauerhaft
+
 </option>
+
 
 </select>
 
@@ -205,23 +308,35 @@ Dauerhaft
 
 
 <label>
+
 Aktion bei Angriff
+
 </label>
 
 
 <select id="action">
 
+
 <option>
+
 Ban
+
 </option>
 
+
 <option>
+
 Kick
+
 </option>
 
+
 <option>
+
 Rolle entfernen
+
 </option>
+
 
 </select>
 
@@ -230,35 +345,46 @@ Rolle entfernen
 
 
 <label>
+
 Maximale Aktionen pro Minute
+
 </label>
 
 
 <select id="limit">
 
+
 <option>
+
 5
+
 </option>
 
+
 <option>
+
 10
+
 </option>
 
+
 <option>
+
 20
+
 </option>
+
 
 </select>
 
+<label>
 
+Logs senden
 
+</label>
 
 
 <div class="toggle">
-
-<label>
-Logs senden
-</label>
 
 <input id="logs" type="checkbox" checked>
 
@@ -267,14 +393,16 @@ Logs senden
 
 
 
-
 <button onclick="saveSettings()">
+
 💾 Speichern
+
 </button>
 
 
 
 </div>
+
 
 </div>
 
@@ -284,10 +412,114 @@ Logs senden
 <script>
 
 
+let currentServer = null;
+
+
+
+// gespeicherten Server laden
+
+fetch("/api/selected-server")
+
+.then(res=>res.json())
+
+.then(data=>{
+
+
+currentServer = data.serverId;
+
+
+
+if(currentServer){
+
+loadSettings();
+
+}
+
+
+});
+
+
+
+
+
+// Anti-Nuke Einstellungen laden
+
+function loadSettings(){
+
+
+fetch(`/api/antinuke?serverId=${currentServer}`)
+
+.then(res=>res.json())
+
+.then(data=>{
+
+
+if(data.settings){
+
+
+
+document.getElementById("enabled").checked =
+data.settings.enabled;
+
+
+
+document.getElementById("duration").value =
+data.settings.duration;
+
+
+
+document.getElementById("action").value =
+data.settings.action;
+
+
+
+document.getElementById("limit").value =
+data.settings.limit;
+
+
+
+document.getElementById("logs").checked =
+data.settings.logs;
+
+
+
+}
+
+
+});
+
+
+}
+
+
+
+
+
+// Einstellungen speichern
+
 function saveSettings(){
 
 
+
+if(!currentServer){
+
+
+alert("❌ Kein Server ausgewählt");
+
+
+return;
+
+
+}
+
+
+
+
 let settings = {
+
+
+serverId: currentServer,
+
 
 enabled:
 document.getElementById("enabled").checked,
@@ -308,19 +540,59 @@ document.getElementById("limit").value,
 logs:
 document.getElementById("logs").checked
 
+
 };
 
 
 
-console.log(settings);
 
 
-alert(
-"✅ Anti-Nuke Einstellungen gespeichert!"
-);
+
+fetch("/api/antinuke",{
+
+
+method:"POST",
+
+
+headers:{
+
+
+"Content-Type":"application/json"
+
+
+},
+
+
+body:JSON.stringify(settings)
+
+
+})
+
+
+.then(res=>res.json())
+
+
+.then(()=>{
+
+
+alert("✅ Anti-Nuke gespeichert");
+
+
+})
+
+
+.catch(()=>{
+
+
+alert("❌ Fehler beim Speichern");
+
+
+});
+
 
 
 }
+
 
 
 </script>
