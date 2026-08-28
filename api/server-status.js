@@ -1,33 +1,27 @@
 export default async function handler(req, res) {
 
-    const botToken = process.env.DISCORD_BOT_TOKEN;
-
-
-    if (!botToken) {
-
-        return res.status(500).json({
-            error: "Bot Token fehlt"
-        });
-
-    }
-
-
-
-    const serverId = req.query.serverId;
-
+    const { serverId } = req.query;
 
 
     if (!serverId) {
-
         return res.status(400).json({
             error: "Keine Server-ID angegeben"
         });
-
     }
 
 
-
     try {
+
+        const botToken = process.env.DISCORD_BOT_TOKEN;
+
+
+        if (!botToken) {
+
+            return res.status(500).json({
+                error: "Bot Token fehlt"
+            });
+
+        }
 
 
         const response = await fetch(
@@ -40,20 +34,16 @@ export default async function handler(req, res) {
         );
 
 
-
         if (response.ok) {
 
-
-            const guild = await response.json();
+            const server = await response.json();
 
 
             return res.status(200).json({
 
-                exists: true,
-
                 botInServer: true,
 
-                name: guild.name
+                name: server.name
 
             });
 
@@ -63,8 +53,6 @@ export default async function handler(req, res) {
 
             return res.status(200).json({
 
-                exists: false,
-
                 botInServer: false
 
             });
@@ -73,8 +61,7 @@ export default async function handler(req, res) {
         }
 
 
-
-    } catch(error) {
+    } catch (error) {
 
 
         return res.status(500).json({
@@ -85,6 +72,5 @@ export default async function handler(req, res) {
 
 
     }
-
 
 }
