@@ -12,7 +12,9 @@ const client = new Client({
 
         GatewayIntentBits.GuildMembers,
 
-        GatewayIntentBits.GuildMessages
+        GatewayIntentBits.GuildMessages,
+
+        GatewayIntentBits.MessageContent
 
     ]
 
@@ -24,6 +26,18 @@ client.once("ready", () => {
 
     console.log(
         `Bot ist online als ${client.user.tag}`
+    );
+
+});
+
+
+
+// Anti-Nuke Vorbereitung
+
+client.on("channelDelete", async (channel) => {
+
+    console.log(
+        `⚠️ Channel gelöscht: ${channel.name}`
     );
 
 });
