@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PahoyaaSecurity - Anti-Raid</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0b1120;
+    color:white;
+}
+
+
+.navbar{
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    background:#111827;
+    border-bottom:1px solid #1e3a8a;
+}
+
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+
+.back{
+    background:#2563eb;
+    color:white;
+    padding:10px 18px;
+    border-radius:8px;
+    text-decoration:none;
+}
+
+
+.container{
+    max-width:900px;
+    margin:50px auto;
+    padding:20px;
+}
+
+
+.box{
+    background:#111827;
+    border:1px solid #1e3a8a;
+    border-radius:12px;
+    padding:25px;
+}
+
+
+h1{
+    font-size:36px;
+}
+
+
+label{
+    display:block;
+    margin-top:20px;
+    margin-bottom:8px;
+    color:#9ca3af;
+}
+
+
+select,
+input{
+    width:100%;
+    padding:12px;
+    background:#0b1120;
+    color:white;
+    border:1px solid #374151;
+    border-radius:8px;
+}
+
+
+.toggle{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+
+input[type="checkbox"]{
+    width:20px;
+    height:20px;
+}
+
+
+.status{
+    color:#6ee7b7;
+    font-weight:bold;
+}
+
+
+button{
+    margin-top:25px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:14px 25px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+
+button:hover{
+    background:#1d4ed8;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+<div class="logo">
+🚨 Anti-Raid Einstellungen
+</div>
+
+
+<a class="back" href="index.html">
+⬅ Zurück
+</a>
+
+
+</nav>
+
+
+
+<div class="container">
+
+
+<h1>
+🚨 Anti-Raid
+</h1>
+
+
+<div class="box">
+
+
+<h2>
+Server Schutz
+</h2>
+
+
+<p>
+Status:
+<span class="status">
+AKTIV
+</span>
+</p>
+
+
+
+<div class="toggle">
+
+<label>
+Anti-Raid aktivieren
+</label>
+
+<input type="checkbox" checked>
+
+</div>
+
+
+
+<label>
+Maximale neue Mitglieder
+</label>
+
+
+<select>
+
+<option>
+5 Mitglieder / Minute
+</option>
+
+<option>
+10 Mitglieder / Minute
+</option>
+
+<option>
+20 Mitglieder / Minute
+</option>
+
+</select>
+
+
+
+<label>
+Aktion bei Raid
+</label>
+
+
+<select>
+
+<option>
+Server sperren
+</option>
+
+<option>
+Mitglieder kicken
+</option>
+
+<option>
+Team benachrichtigen
+</option>
+
+</select>
+
+
+
+<div class="toggle">
+
+<label>
+Raid Logs senden
+</label>
+
+<input type="checkbox" checked>
+
+</div>
+
+
+
+<button>
+💾 Speichern
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>
