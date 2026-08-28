@@ -3,6 +3,7 @@ let settings = {};
 export default function handler(req, res) {
 
 
+    // Einstellungen speichern
     if(req.method === "POST"){
 
 
@@ -27,15 +28,41 @@ export default function handler(req, res) {
 
 
 
+        let expireTime = null;
+
+
+
+        // 0 = dauerhaft
+        if(Number(duration) !== 0){
+
+            expireTime =
+            Date.now() + (Number(duration) * 60 * 60 * 1000);
+
+        }
+
+
+
+
         settings[serverId] = {
 
+
             enabled,
+
             duration,
+
             action,
+
             limit,
+
             logs,
 
+
+            // Ablaufzeit speichern
+            expireTime,
+
+
             updatedAt: Date.now()
+
 
         };
 
@@ -44,6 +71,7 @@ export default function handler(req, res) {
         return res.status(200).json({
 
             success:true,
+
             settings:settings[serverId]
 
         });
@@ -55,6 +83,8 @@ export default function handler(req, res) {
 
 
 
+
+    // Einstellungen laden
     if(req.method === "GET"){
 
 
@@ -65,18 +95,51 @@ export default function handler(req, res) {
         if(!serverId){
 
             return res.status(400).json({
+
                 error:"Keine Server ID"
+
             });
 
         }
 
 
 
+
+
+        let serverSettings = settings[serverId];
+
+
+
+        if(serverSettings){
+
+
+
+            // Prüfen ob Zeit abgelaufen ist
+
+            if(
+                serverSettings.expireTime &&
+                Date.now() > serverSettings.expireTime
+            ){
+
+
+                serverSettings.enabled = false;
+
+
+            }
+
+
+
+        }
+
+
+
+
         return res.status(200).json({
 
-            settings: settings[serverId] || null
+            settings: serverSettings || null
 
         });
+
 
 
     }
@@ -90,6 +153,7 @@ export default function handler(req, res) {
         error:"Methode nicht erlaubt"
 
     });
+
 
 
 }
