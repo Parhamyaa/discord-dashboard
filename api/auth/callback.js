@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
     if (!clientId || !clientSecret || !redirectUri) {
         return res.status(500).send(
-            "DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET oder DISCORD_REDIRECT_URI fehlt."
+            "Discord-Umgebungsvariablen fehlen."
         );
     }
 
@@ -27,7 +27,7 @@ export default async function handler(req, res) {
                     client_id: clientId,
                     client_secret: clientSecret,
                     grant_type: "authorization_code",
-                    code,
+                    code: code,
                     redirect_uri: redirectUri
                 })
             }
@@ -36,10 +36,13 @@ export default async function handler(req, res) {
         const tokenData = await tokenResponse.json();
 
         if (!tokenResponse.ok) {
-            return res.status(400).send(
-                "Discord Login fehlgeschlagen: " +
-                JSON.stringify(tokenData)
-            );
+            return res.status(400).send(`
+                <h1>Discord Login fehlgeschlagen</h1>
+                <p>${JSON.stringify(tokenData)}</p>
+                <hr>
+                <p><strong>Verwendete Redirect-URI:</strong></p>
+                <code>${redirectUri}</code>
+            `);
         }
 
         const userResponse = await fetch(
@@ -93,6 +96,7 @@ export default async function handler(req, res) {
 
     } catch (error) {
         console.error(error);
+
         return res.status(500).send(
             "Interner Fehler beim Discord Login."
         );
