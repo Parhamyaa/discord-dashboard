@@ -5,11 +5,8 @@ export default function handler(req, res) {
         return res.status(500).send("DISCORD_CLIENT_ID fehlt.");
     }
 
-    const redirectUri = process.env.DISCORD_REDIRECT_URI;
-
-    if (!redirectUri) {
-        return res.status(500).send("DISCORD_REDIRECT_URI fehlt.");
-    }
+    const redirectUri =
+        "https://discord-dashboard-f817z7dpm-mein-bot.vercel.app/api/auth/callback";
 
     const params = new URLSearchParams({
         client_id: clientId,
@@ -21,5 +18,5 @@ export default function handler(req, res) {
     const discordUrl =
         "https://discord.com/oauth2/authorize?" + params.toString();
 
-    res.redirect(302, discordUrl);
+    return res.redirect(302, discordUrl);
 }
