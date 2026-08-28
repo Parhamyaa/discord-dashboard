@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>PahoyaaSecurity Dashboard</title>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+box-sizing:border-box;
+}
 
 body{
 margin:0;
@@ -15,6 +20,7 @@ font-family:Arial,sans-serif;
 background:#0b1120;
 color:white;
 }
+
 
 .navbar{
 height:70px;
@@ -26,10 +32,12 @@ background:#111827;
 border-bottom:1px solid #1e3a8a;
 }
 
+
 .logo{
 font-size:22px;
 font-weight:bold;
 }
+
 
 .login{
 background:#5865F2;
@@ -40,70 +48,98 @@ text-decoration:none;
 font-weight:bold;
 }
 
+
 .dashboard{
 max-width:1200px;
 margin:45px auto;
 padding:20px;
 }
 
+
 .welcome h1{
 font-size:36px;
 }
+
 
 .welcome p{
 color:#9ca3af;
 }
 
-.server-box,
-.card{
+
+.server-box{
+
 background:#111827;
 border:1px solid #1e3a8a;
 border-radius:12px;
-}
-
-.server-box{
 padding:20px;
 margin:30px 0;
+
 }
 
+
 .server-select{
+
 width:100%;
 padding:14px;
 background:#0b1120;
 color:white;
-border-radius:8px;
 border:1px solid #374151;
+border-radius:8px;
+
 }
 
+
 .cards{
+
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 gap:18px;
+
 }
+
 
 .card{
+
+background:#111827;
+border:1px solid #1e3a8a;
+border-radius:12px;
 padding:24px;
 transition:.2s;
+
 }
+
 
 .card:hover{
+
 transform:translateY(-3px);
 border-color:#3b82f6;
+
 }
+
 
 .card-icon{
+
 font-size:30px;
+
 }
+
 
 .card h3{
+
 font-size:20px;
+
 }
+
 
 .card p{
+
 color:#9ca3af;
+
 }
 
+
 .status{
+
 display:inline-block;
 margin-top:15px;
 padding:5px 10px;
@@ -111,9 +147,12 @@ border-radius:20px;
 background:#064e3b;
 color:#6ee7b7;
 font-size:13px;
+
 }
 
+
 .invite-button{
+
 display:inline-block;
 margin-top:30px;
 background:#2563eb;
@@ -122,18 +161,25 @@ padding:14px 22px;
 border-radius:9px;
 text-decoration:none;
 font-weight:bold;
+
 }
 
+
 .footer{
+
 text-align:center;
-margin:50px;
 color:#6b7280;
+margin:50px;
+
 }
+
 </style>
 
 </head>
 
+
 <body>
+
 
 <nav class="navbar">
 
@@ -141,11 +187,14 @@ color:#6b7280;
 🛡️ PahoyaaSecurity
 </div>
 
+
 <a class="login" href="/api/auth/discord">
 Mit Discord anmelden
 </a>
 
+
 </nav>
+
 
 
 <main class="dashboard">
@@ -164,15 +213,25 @@ Verwalte deinen Discord-Server und konfiguriere deinen Bot.
 </div>
 
 
+
 <div class="server-box">
 
-<h2>🖥️ Server auswählen</h2>
+<h2>
+🖥️ Server auswählen
+</h2>
+
 
 <select class="server-select">
-<option>Bitte zuerst mit Discord anmelden</option>
+
+<option>
+Bitte zuerst mit Discord anmelden
+</option>
+
 </select>
 
 </div>
+
+
 
 
 <h2>
@@ -180,10 +239,14 @@ Verwalte deinen Discord-Server und konfiguriere deinen Bot.
 </h2>
 
 
+
+
 <div class="cards">
 
 
+
 <a href="antinuke.html" style="text-decoration:none;color:white">
+
 <div class="card">
 
 <div class="card-icon">🛡️</div>
@@ -199,9 +262,13 @@ AKTIV
 </span>
 
 </div>
+
 </a>
 
 
+
+
+<a href="antiraid.html" style="text-decoration:none;color:white">
 
 <div class="card">
 
@@ -218,6 +285,10 @@ AKTIV
 </span>
 
 </div>
+
+</a>
+
+
 
 
 
@@ -243,6 +314,10 @@ AKTIV
 
 
 
+
+
+<a href="verify.html" style="text-decoration:none;color:white">
+
 <div class="card">
 
 <div class="card-icon">🔐</div>
@@ -250,7 +325,7 @@ AKTIV
 <h3>Verify</h3>
 
 <p>
-Verifizierungssystem verwalten.
+Verwalte dein Verifizierungssystem.
 </p>
 
 <span class="status">
@@ -259,7 +334,13 @@ AKTIV
 
 </div>
 
+</a>
 
+
+
+
+
+<a href="automod.html" style="text-decoration:none;color:white">
 
 <div class="card">
 
@@ -268,7 +349,7 @@ AKTIV
 <h3>AutoMod</h3>
 
 <p>
-Automatische Moderation.
+Automatische Moderation und Schutz.
 </p>
 
 <span class="status">
@@ -277,7 +358,13 @@ AKTIV
 
 </div>
 
+</a>
 
+
+
+
+
+<a href="afk.html" style="text-decoration:none;color:white">
 
 <div class="card">
 
@@ -286,7 +373,7 @@ AKTIV
 <h3>AFK</h3>
 
 <p>
-AFK-System verwalten.
+Verwalte das AFK-System.
 </p>
 
 <span class="status">
@@ -295,7 +382,13 @@ AKTIV
 
 </div>
 
+</a>
 
+
+
+
+
+<a href="giveaways.html" style="text-decoration:none;color:white">
 
 <div class="card">
 
@@ -304,7 +397,7 @@ AKTIV
 <h3>Giveaways</h3>
 
 <p>
-Giveaway Funktionen.
+Verwalte deine Gewinnspiele.
 </p>
 
 <span class="status">
@@ -313,7 +406,13 @@ AKTIV
 
 </div>
 
+</a>
 
+
+
+
+
+<a href="templates.html" style="text-decoration:none;color:white">
 
 <div class="card">
 
@@ -322,7 +421,7 @@ AKTIV
 <h3>Templates</h3>
 
 <p>
-Server Vorlagen verwalten.
+Erstelle Server-Aufbau Vorlagen mit Rollen und Kanälen.
 </p>
 
 <span class="status">
@@ -330,6 +429,9 @@ AKTIV
 </span>
 
 </div>
+
+</a>
+
 
 
 </div>
@@ -341,12 +443,17 @@ AKTIV
 </a>
 
 
+
+
 <div class="footer">
 🛡️ PahoyaaSecurity
 </div>
 
 
+
 </main>
 
+
 </body>
+
 </html>
