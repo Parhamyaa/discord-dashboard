@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="de">
 
 <head>
@@ -75,6 +74,7 @@ color:#9ca3af;
 }
 
 
+
 .server-box{
 
 background:#111827;
@@ -86,57 +86,61 @@ margin:30px 0;
 }
 
 
+
 .server-select{
 
 width:100%;
 height:55px;
 padding:14px;
+
 background:#0b1120;
 color:white;
+
 border:1px solid #374151;
 border-radius:8px;
+
 font-size:16px;
 
 }
 
 
-.active-server{
-
-margin-top:35px;
-padding:15px;
-background:#0b1120;
-border:1px solid #2563eb;
-border-radius:10px;
-
-}
-
 
 .cards{
 
 display:grid;
+
 grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
 gap:18px;
 
 }
 
 
+
 .card{
 
 background:#111827;
+
 border:1px solid #1e3a8a;
+
 border-radius:12px;
+
 padding:24px;
+
 transition:.2s;
 
 }
 
 
+
 .card:hover{
 
 transform:translateY(-3px);
+
 border-color:#3b82f6;
 
 }
+
 
 
 .card-icon{
@@ -146,11 +150,13 @@ font-size:30px;
 }
 
 
+
 .card h3{
 
 font-size:20px;
 
 }
+
 
 
 .card p{
@@ -160,40 +166,59 @@ color:#9ca3af;
 }
 
 
+
 .status{
 
 display:inline-block;
+
 margin-top:15px;
+
 padding:5px 10px;
+
 border-radius:20px;
+
 background:#064e3b;
+
 color:#6ee7b7;
+
 font-size:13px;
 
 }
 
 
+
 .invite-button{
 
 display:inline-block;
+
 margin-top:30px;
+
 background:#2563eb;
+
 color:white;
+
 padding:14px 22px;
+
 border-radius:9px;
+
 text-decoration:none;
+
 font-weight:bold;
 
 }
 
 
+
 .footer{
 
 text-align:center;
+
 color:#6b7280;
+
 margin:50px;
 
 }
+
 
 </style>
 
@@ -205,15 +230,20 @@ margin:50px;
 
 <nav class="navbar">
 
+
 <div class="logo">
+
 🛡️ PahoyaaSecurity
+
 </div>
 
 
 <div id="user-area">
 
 <a class="login" href="/api/auth/discord">
+
 Mit Discord anmelden
+
 </a>
 
 </div>
@@ -222,8 +252,8 @@ Mit Discord anmelden
 </nav>
 
 
-<main class="dashboard">
 
+<main class="dashboard">
 
 <div class="welcome">
 
@@ -231,17 +261,15 @@ Mit Discord anmelden
 🏠 PahoyaaSecurity Dashboard
 </h1>
 
-
 <p>
 Verwalte deinen Discord-Server und konfiguriere deinen Bot.
 </p>
 
-
 </div>
 
 
-<div class="server-box">
 
+<div class="server-box">
 
 <h2>
 🖥️ Server auswählen
@@ -257,30 +285,21 @@ Server werden geladen...
 </select>
 
 
-<div class="active-server">
-
-✅ Aktiver Server:
-<br>
-
-<span id="active-server-name">
-Keiner ausgewählt
-</span>
-
 </div>
 
 
-</div>
 
- 
 <h2>
 📊 Übersicht
 </h2>
+
 
 
 <div class="cards">
 
 
 <a href="antinuke.html" style="text-decoration:none;color:white">
+
 <div class="card">
 
 <div class="card-icon">🛡️</div>
@@ -296,10 +315,13 @@ AKTIV
 </span>
 
 </div>
+
 </a>
 
 
+
 <a href="antiraid.html" style="text-decoration:none;color:white">
+
 <div class="card">
 
 <div class="card-icon">🚨</div>
@@ -315,10 +337,13 @@ AKTIV
 </span>
 
 </div>
+
 </a>
 
 
+
 <a href="tickets.html" style="text-decoration:none;color:white">
+
 <div class="card">
 
 <div class="card-icon">🎫</div>
@@ -334,10 +359,13 @@ AKTIV
 </span>
 
 </div>
+
 </a>
 
 
+
 <a href="verify.html" style="text-decoration:none;color:white">
+
 <div class="card">
 
 <div class="card-icon">🔐</div>
@@ -353,10 +381,13 @@ AKTIV
 </span>
 
 </div>
+
 </a>
 
 
+
 <a href="automod.html" style="text-decoration:none;color:white">
+
 <div class="card">
 
 <div class="card-icon">🤖</div>
@@ -372,10 +403,13 @@ AKTIV
 </span>
 
 </div>
+
 </a>
 
 
+
 <a href="afk.html" style="text-decoration:none;color:white">
+
 <div class="card">
 
 <div class="card-icon">💤</div>
@@ -391,10 +425,13 @@ AKTIV
 </span>
 
 </div>
+
 </a>
 
 
+
 <a href="giveaways.html" style="text-decoration:none;color:white">
+
 <div class="card">
 
 <div class="card-icon">🎉</div>
@@ -410,10 +447,13 @@ AKTIV
 </span>
 
 </div>
+
 </a>
 
 
+
 <a href="templates.html" style="text-decoration:none;color:white">
+
 <div class="card">
 
 <div class="card-icon">📋</div>
@@ -429,6 +469,7 @@ AKTIV
 </span>
 
 </div>
+
 </a>
 
 
@@ -437,14 +478,19 @@ AKTIV
 
 
 <a class="invite-button" href="/api/invite">
+
 🤖 Bot auf Server hinzufügen
+
 </a>
 
 
 
 <div class="footer">
+
 🛡️ PahoyaaSecurity
+
 </div>
+
 
 
 </main>
@@ -454,21 +500,28 @@ AKTIV
 <script>
 
 
-// Discord Name anzeigen
+// Discord Name oben rechts
 
 fetch("/api/user")
+
 .then(res => res.json())
+
 .then(data => {
 
-const area = document.getElementById("user-area");
+
+const area=document.getElementById("user-area");
 
 
 if(data.loggedIn){
 
-area.innerHTML = `
+area.innerHTML=`
+
 <div class="user-box">
+
 👤 ${data.user.username}
+
 </div>
+
 `;
 
 }
@@ -478,31 +531,35 @@ area.innerHTML = `
 
 
 
+
 // Server laden
 
 fetch("/api/guilds")
+
 .then(res => res.json())
+
 .then(data => {
 
 
-const select = document.getElementById("server-select");
+const select=document.getElementById("server-select");
 
 
-select.innerHTML = "";
+select.innerHTML="";
 
 
 if(data.servers){
 
 
-data.servers.forEach(server => {
+data.servers.forEach(server=>{
 
 
-const option = document.createElement("option");
+let option=document.createElement("option");
 
 
-option.value = server.id;
+option.value=server.id;
 
-option.textContent = server.name;
+
+option.textContent=server.name;
 
 
 select.appendChild(option);
@@ -511,83 +568,41 @@ select.appendChild(option);
 });
 
 
-
-
-// gespeicherten Server laden
-
-fetch("/api/selected-server")
-.then(res => res.json())
-.then(saved => {
-
-
-if(saved.serverId){
-
-select.value = saved.serverId;
-
 }
 
 
-updateServerName();
+else{
 
 
-});
+select.innerHTML=`
 
+<option>
 
-}
+Keine Server gefunden
 
+</option>
 
-});
-
-
-
-
-// Aktiven Server anzeigen
-
-function updateServerName(){
-
-const select = document.getElementById("server-select");
-
-
-if(select.selectedIndex !== -1){
-
-document.getElementById("active-server-name").innerText =
-select.options[select.selectedIndex].text;
+`;
 
 }
 
-}
-
-
-
-
-// Server wechseln
-
-document.getElementById("server-select")
-.addEventListener("change", function(){
-
-
-updateServerName();
-
-
-fetch("/api/selected-server",{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-
-serverId:this.value
 
 })
 
+.catch(()=>{
+
+
+document.getElementById("server-select").innerHTML=`
+
+<option>
+
+Fehler beim Laden
+
+</option>
+
+`;
+
 });
-
-
-});
-
 
 
 </script>
