@@ -28,6 +28,7 @@ export default async function handler(req, res) {
             "https://discord.com/api/oauth2/token",
             {
                 method: "POST",
+
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
@@ -93,21 +94,32 @@ export default async function handler(req, res) {
 
 
 
-        // Login Cookie speichern
+        // Benutzer Session speichern
 
         const session = Buffer.from(
             JSON.stringify({
+
                 id: user.id,
+
                 username: user.username,
+
                 avatar: user.avatar
+
             })
         ).toString("base64");
 
 
 
+
+        // Cookies speichern
+
         res.setHeader(
             "Set-Cookie",
-            `pahoyaa_session=${session}; Path=/; HttpOnly; SameSite=Lax; Max-Age=86400`
+            [
+                `pahoyaa_session=${session}; Path=/; HttpOnly; SameSite=Lax; Max-Age=86400`,
+
+                `discord_access_token=${tokenData.access_token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=86400`
+            ]
         );
 
 
