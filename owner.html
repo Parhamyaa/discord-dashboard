@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>PahoyaaSecurity – Owner</title>
 
     <style>
+
         * {
             box-sizing: border-box;
         }
@@ -103,6 +105,7 @@
             border-radius: 50%;
             object-fit: cover;
             background: #1e293b;
+            flex-shrink: 0;
         }
 
         .server-name {
@@ -114,6 +117,64 @@
             margin-top: 5px;
             color: #6b7280;
             font-size: 12px;
+            word-break: break-all;
+        }
+
+        .message-box {
+            width: 100%;
+            min-height: 140px;
+            margin-top: 15px;
+            padding: 15px;
+
+            background: #0b1020;
+            color: white;
+
+            border: 1px solid #26345f;
+            border-radius: 10px;
+
+            resize: vertical;
+
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+
+            outline: none;
+        }
+
+        .message-box:focus {
+            border-color: #4da3ff;
+        }
+
+        .send-button {
+            margin-top: 15px;
+
+            padding: 13px 22px;
+
+            background: #2563eb;
+            color: white;
+
+            border: none;
+            border-radius: 9px;
+
+            font-weight: bold;
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .send-button:hover {
+            background: #1d4ed8;
+        }
+
+        .send-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #message-result {
+            margin-top: 15px;
+            color: #9ca3af;
         }
 
         #loading {
@@ -139,82 +200,217 @@
         .error {
             color: #f87171;
         }
+
     </style>
 </head>
 
+
 <body>
 
+
+    <!-- ========================================== -->
+    <!-- LOADING -->
+    <!-- ========================================== -->
+
     <div id="loading">
-        <h2>🔐 Owner-Berechtigung wird geprüft...</h2>
+
+        <h2>
+            🔐 Owner-Berechtigung wird geprüft...
+        </h2>
+
     </div>
 
+
+    <!-- ========================================== -->
+    <!-- ACCESS DENIED -->
+    <!-- ========================================== -->
+
     <div id="denied">
-        <h1>⛔ Zugriff verweigert</h1>
-        <p>Du hast keine Berechtigung für den Owner-Bereich.</p>
-        <a href="/" style="color:#4da3ff;">← Zurück zum Dashboard</a>
+
+        <h1>
+            ⛔ Zugriff verweigert
+        </h1>
+
+        <p>
+            Du hast keine Berechtigung für den Owner-Bereich.
+        </p>
+
+        <a
+            href="/"
+            style="color:#4da3ff;"
+        >
+            ← Zurück zum Dashboard
+        </a>
+
     </div>
+
+
+    <!-- ========================================== -->
+    <!-- OWNER CONTENT -->
+    <!-- ========================================== -->
 
     <div id="owner-content">
 
+
         <div class="header">
-            <h1>👑 PahoyaaSecurity Owner</h1>
-            <p>Owner-Bereich</p>
+
+            <h1>
+                👑 PahoyaaSecurity Owner
+            </h1>
+
+            <p>
+                Owner-Bereich
+            </p>
+
         </div>
+
 
         <div class="container">
 
+
+            <!-- ====================================== -->
             <!-- BOT STATISTIKEN -->
+            <!-- ====================================== -->
 
             <div class="grid">
 
-                <div class="card">
-                    <h2>🤖 Bot Status</h2>
-                    <div class="value status" id="bot-status">
-                        Wird geladen...
-                    </div>
-                </div>
 
                 <div class="card">
-                    <h2>🌐 Bot Server</h2>
-                    <div class="value" id="bot-server-count">
+
+                    <h2>
+                        🤖 Bot Status
+                    </h2>
+
+                    <div
+                        class="value status"
+                        id="bot-status"
+                    >
                         Wird geladen...
                     </div>
+
                 </div>
 
-                <div class="card">
-                    <h2>👥 Mitglieder</h2>
-                    <div class="value" id="member-count">
-                        Wird geladen...
-                    </div>
-                </div>
 
                 <div class="card">
-                    <h2>📡 API Ping</h2>
-                    <div class="value" id="bot-ping">
+
+                    <h2>
+                        🌐 Bot Server
+                    </h2>
+
+                    <div
+                        class="value"
+                        id="bot-server-count"
+                    >
                         Wird geladen...
                     </div>
+
                 </div>
+
+
+                <div class="card">
+
+                    <h2>
+                        👥 Mitglieder
+                    </h2>
+
+                    <div
+                        class="value"
+                        id="member-count"
+                    >
+                        Wird geladen...
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h2>
+                        📡 API Ping
+                    </h2>
+
+                    <div
+                        class="value"
+                        id="bot-ping"
+                    >
+                        Wird geladen...
+                    </div>
+
+                </div>
+
 
             </div>
 
 
+            <!-- ====================================== -->
             <!-- SERVER ÜBERSICHT -->
+            <!-- ====================================== -->
 
             <div class="section">
 
-                <h2>🌐 Server-Übersicht</h2>
+                <h2>
+                    🌐 Server-Übersicht
+                </h2>
 
                 <p style="color:#9ca3af;">
+
                     Server, die über dein Discord-Konto verfügbar sind.
+
                 </p>
 
+
                 <div id="server-list">
+
                     <p style="color:#9ca3af;">
+
                         Server werden geladen...
+
                     </p>
+
                 </div>
 
             </div>
+
+
+            <!-- ====================================== -->
+            <!-- GLOBALE BOT NACHRICHT -->
+            <!-- ====================================== -->
+
+            <div class="section">
+
+                <h2>
+                    📢 Globale Bot-Nachricht
+                </h2>
+
+                <p style="color:#9ca3af;">
+
+                    Sende eine Nachricht an alle Server,
+                    auf denen dein Bot vorhanden ist.
+
+                </p>
+
+
+                <textarea
+                    id="global-message"
+                    class="message-box"
+                    maxlength="2000"
+                    placeholder="Deine globale Nachricht..."
+                ></textarea>
+
+
+                <button
+                    id="send-message"
+                    class="send-button"
+                    onclick="sendGlobalMessage()"
+                >
+                    📢 Nachricht senden
+                </button>
+
+
+                <div id="message-result"></div>
+
+            </div>
+
 
         </div>
 
@@ -222,6 +418,7 @@
 
 
     <script>
+
 
         // ==========================================
         // OWNER PRÜFEN
@@ -233,18 +430,29 @@
 
             .then(data => {
 
-                document.getElementById("loading").style.display = "none";
+
+                document.getElementById("loading").style.display =
+                    "none";
+
 
                 if (data.allowed === true) {
 
-                    document.getElementById("owner-content").style.display = "block";
+
+                    document.getElementById("owner-content").style.display =
+                        "block";
+
 
                     loadBotStats();
+
                     loadServers();
+
 
                 } else {
 
-                    document.getElementById("denied").style.display = "block";
+
+                    document.getElementById("denied").style.display =
+                        "block";
+
 
                 }
 
@@ -252,18 +460,25 @@
 
             .catch(() => {
 
-                document.getElementById("loading").style.display = "none";
 
-                document.getElementById("denied").style.display = "block";
+                document.getElementById("loading").style.display =
+                    "none";
+
+
+                document.getElementById("denied").style.display =
+                    "block";
+
 
             });
 
 
+
         // ==========================================
-        // BOT STATISTIKEN LADEN
+        // BOT STATISTIKEN
         // ==========================================
 
         function loadBotStats() {
+
 
             fetch("/api/bot-stats")
 
@@ -271,53 +486,73 @@
 
                 .then(data => {
 
+
                     if (!data.success) {
 
-                        document.getElementById("bot-status").textContent = "FEHLER";
-                        document.getElementById("bot-server-count").textContent = "?";
-                        document.getElementById("member-count").textContent = "?";
-                        document.getElementById("bot-ping").textContent = "?";
+
+                        document.getElementById("bot-status").textContent =
+                            "FEHLER";
+
+
+                        document.getElementById("bot-server-count").textContent =
+                            "?";
+
+
+                        document.getElementById("member-count").textContent =
+                            "?";
+
+
+                        document.getElementById("bot-ping").textContent =
+                            "?";
+
 
                         return;
 
                     }
 
 
-                    // BOT STATUS
-
                     document.getElementById("bot-status").textContent =
                         data.bot.status;
 
-
-                    // SERVER
 
                     document.getElementById("bot-server-count").textContent =
                         data.statistics.servers;
 
 
-                    // MITGLIEDER
-
                     document.getElementById("member-count").textContent =
                         data.statistics.members;
 
 
-                    // PING
-
                     document.getElementById("bot-ping").textContent =
                         data.statistics.ping + " ms";
 
+
                 })
+
 
                 .catch(() => {
 
-                    document.getElementById("bot-status").textContent = "FEHLER";
-                    document.getElementById("bot-server-count").textContent = "?";
-                    document.getElementById("member-count").textContent = "?";
-                    document.getElementById("bot-ping").textContent = "?";
+
+                    document.getElementById("bot-status").textContent =
+                        "FEHLER";
+
+
+                    document.getElementById("bot-server-count").textContent =
+                        "?";
+
+
+                    document.getElementById("member-count").textContent =
+                        "?";
+
+
+                    document.getElementById("bot-ping").textContent =
+                        "?";
+
 
                 });
 
         }
+
 
 
         // ==========================================
@@ -326,20 +561,30 @@
 
         function loadServers() {
 
+
             fetch("/api/guilds")
 
                 .then(response => response.json())
 
                 .then(data => {
 
-                    const list = document.getElementById("server-list");
+
+                    const list =
+                        document.getElementById("server-list");
+
 
                     list.innerHTML = "";
 
-                    if (!data.servers || data.servers.length === 0) {
+
+                    if (
+                        !data.servers ||
+                        data.servers.length === 0
+                    ) {
+
 
                         list.innerHTML =
                             '<p style="color:#9ca3af;">Keine Server gefunden.</p>';
+
 
                         return;
 
@@ -348,44 +593,70 @@
 
                     data.servers.forEach(server => {
 
-                        const box = document.createElement("div");
 
-                        box.className = "server";
+                        const box =
+                            document.createElement("div");
 
 
-                        const icon = document.createElement("img");
+                        box.className =
+                            "server";
 
-                        icon.className = "server-icon";
+
+                        const icon =
+                            document.createElement("img");
+
+
+                        icon.className =
+                            "server-icon";
 
 
                         if (server.icon) {
 
+
                             icon.src =
                                 `https://cdn.discordapp.com/icons/${server.id}/${server.icon}.png?size=128`;
 
+
                         } else {
+
 
                             icon.src =
                                 "https://cdn.discordapp.com/embed/avatars/0.png";
 
+
                         }
 
 
-                        const info = document.createElement("div");
+                        icon.alt =
+                            server.name;
 
 
-                        const name = document.createElement("div");
-
-                        name.className = "server-name";
-
-                        name.textContent = server.name;
+                        const info =
+                            document.createElement("div");
 
 
-                        const id = document.createElement("div");
+                        const name =
+                            document.createElement("div");
 
-                        id.className = "server-id";
 
-                        id.textContent = server.id;
+                        name.className =
+                            "server-name";
+
+
+                        name.textContent =
+                            server.name;
+
+
+                        const id =
+                            document.createElement("div");
+
+
+                        id.className =
+                            "server-id";
+
+
+                        id.textContent =
+                            server.id;
 
 
                         info.appendChild(name);
@@ -400,20 +671,203 @@
 
                         list.appendChild(box);
 
+
                     });
 
                 })
 
+
                 .catch(() => {
 
+
                     document.getElementById("server-list").innerHTML =
+
                         '<p class="error">⚠️ Server konnten nicht geladen werden.</p>';
+
 
                 });
 
         }
 
+
+
+        // ==========================================
+        // GLOBALE BOT-NACHRICHT
+        // ==========================================
+
+        async function sendGlobalMessage() {
+
+
+            const input =
+                document.getElementById("global-message");
+
+
+            const result =
+                document.getElementById("message-result");
+
+
+            const button =
+                document.getElementById("send-message");
+
+
+            const message =
+                input.value.trim();
+
+
+            if (!message) {
+
+
+                result.textContent =
+                    "⚠️ Bitte eine Nachricht eingeben.";
+
+
+                result.style.color =
+                    "#f87171";
+
+
+                return;
+
+            }
+
+
+            if (message.length > 2000) {
+
+
+                result.textContent =
+                    "⚠️ Die Nachricht darf maximal 2000 Zeichen haben.";
+
+
+                result.style.color =
+                    "#f87171";
+
+
+                return;
+
+            }
+
+
+            const confirmed =
+                confirm(
+
+                    "📢 Soll diese Nachricht wirklich gesendet werden?\n\n" +
+                    message
+
+                );
+
+
+            if (!confirmed) {
+
+                return;
+
+            }
+
+
+            button.disabled =
+                true;
+
+
+            button.textContent =
+                "⏳ Wird gesendet...";
+
+
+            result.textContent =
+                "";
+
+
+            try {
+
+
+                const response =
+                    await fetch(
+
+                        "/api/global-message",
+
+                        {
+
+                            method: "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body: JSON.stringify({
+
+                                message: message
+
+                            })
+
+                        }
+
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (data.success) {
+
+
+                    result.textContent =
+                        `✅ Nachricht wurde erfolgreich vorbereitet.`;
+
+
+                    result.style.color =
+                        "#4ade80";
+
+
+                    input.value =
+                        "";
+
+
+                } else {
+
+
+                    result.textContent =
+                        "❌ " +
+                        (
+                            data.error ||
+                            "Nachricht konnte nicht verarbeitet werden."
+                        );
+
+
+                    result.style.color =
+                        "#f87171";
+
+
+                }
+
+
+            } catch (error) {
+
+
+                result.textContent =
+                    "❌ Verbindung zur API fehlgeschlagen.";
+
+
+                result.style.color =
+                    "#f87171";
+
+
+            }
+
+
+            button.disabled =
+                false;
+
+
+            button.textContent =
+                "📢 Nachricht senden";
+
+
+        }
+
+
     </script>
+
 
 </body>
 </html>
