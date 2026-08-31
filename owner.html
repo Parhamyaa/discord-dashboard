@@ -163,28 +163,36 @@
 
         <div class="container">
 
-            <!-- STATISTIKEN -->
+            <!-- BOT STATISTIKEN -->
 
             <div class="grid">
 
                 <div class="card">
                     <h2>🤖 Bot Status</h2>
-                    <div class="value status">ONLINE</div>
+                    <div class="value status" id="bot-status">
+                        Wird geladen...
+                    </div>
                 </div>
 
                 <div class="card">
-                    <h2>🌐 Server</h2>
-                    <div class="value" id="server-count">Wird geladen...</div>
+                    <h2>🌐 Bot Server</h2>
+                    <div class="value" id="bot-server-count">
+                        Wird geladen...
+                    </div>
                 </div>
 
                 <div class="card">
-                    <h2>🛡️ Security</h2>
-                    <div class="value status">AKTIV</div>
+                    <h2>👥 Mitglieder</h2>
+                    <div class="value" id="member-count">
+                        Wird geladen...
+                    </div>
                 </div>
 
                 <div class="card">
-                    <h2>⚡ Bot</h2>
-                    <div class="value">PahoyaaSecurity</div>
+                    <h2>📡 API Ping</h2>
+                    <div class="value" id="bot-ping">
+                        Wird geladen...
+                    </div>
                 </div>
 
             </div>
@@ -215,7 +223,9 @@
 
     <script>
 
+        // ==========================================
         // OWNER PRÜFEN
+        // ==========================================
 
         fetch("/api/owner")
 
@@ -229,6 +239,7 @@
 
                     document.getElementById("owner-content").style.display = "block";
 
+                    loadBotStats();
                     loadServers();
 
                 } else {
@@ -248,7 +259,70 @@
             });
 
 
+        // ==========================================
+        // BOT STATISTIKEN LADEN
+        // ==========================================
+
+        function loadBotStats() {
+
+            fetch("/api/bot-stats")
+
+                .then(response => response.json())
+
+                .then(data => {
+
+                    if (!data.success) {
+
+                        document.getElementById("bot-status").textContent = "FEHLER";
+                        document.getElementById("bot-server-count").textContent = "?";
+                        document.getElementById("member-count").textContent = "?";
+                        document.getElementById("bot-ping").textContent = "?";
+
+                        return;
+
+                    }
+
+
+                    // BOT STATUS
+
+                    document.getElementById("bot-status").textContent =
+                        data.bot.status;
+
+
+                    // SERVER
+
+                    document.getElementById("bot-server-count").textContent =
+                        data.statistics.servers;
+
+
+                    // MITGLIEDER
+
+                    document.getElementById("member-count").textContent =
+                        data.statistics.members;
+
+
+                    // PING
+
+                    document.getElementById("bot-ping").textContent =
+                        data.statistics.ping + " ms";
+
+                })
+
+                .catch(() => {
+
+                    document.getElementById("bot-status").textContent = "FEHLER";
+                    document.getElementById("bot-server-count").textContent = "?";
+                    document.getElementById("member-count").textContent = "?";
+                    document.getElementById("bot-ping").textContent = "?";
+
+                });
+
+        }
+
+
+        // ==========================================
         // SERVER LADEN
+        // ==========================================
 
         function loadServers() {
 
@@ -259,13 +333,10 @@
                 .then(data => {
 
                     const list = document.getElementById("server-list");
-                    const count = document.getElementById("server-count");
 
                     list.innerHTML = "";
 
                     if (!data.servers || data.servers.length === 0) {
-
-                        count.textContent = "0";
 
                         list.innerHTML =
                             '<p style="color:#9ca3af;">Keine Server gefunden.</p>';
@@ -274,13 +345,6 @@
 
                     }
 
-
-                    // ECHTE SERVERANZAHL
-
-                    count.textContent = data.servers.length;
-
-
-                    // SERVER ANZEIGEN
 
                     data.servers.forEach(server => {
 
@@ -308,6 +372,7 @@
 
 
                         const info = document.createElement("div");
+
 
                         const name = document.createElement("div");
 
@@ -340,8 +405,6 @@
                 })
 
                 .catch(() => {
-
-                    document.getElementById("server-count").textContent = "?";
 
                     document.getElementById("server-list").innerHTML =
                         '<p class="error">⚠️ Server konnten nicht geladen werden.</p>';
