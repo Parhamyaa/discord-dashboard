@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -202,15 +204,14 @@
         }
 
     </style>
+
 </head>
 
 
 <body>
 
 
-    <!-- ========================================== -->
     <!-- LOADING -->
-    <!-- ========================================== -->
 
     <div id="loading">
 
@@ -221,9 +222,7 @@
     </div>
 
 
-    <!-- ========================================== -->
     <!-- ACCESS DENIED -->
-    <!-- ========================================== -->
 
     <div id="denied">
 
@@ -245,9 +244,7 @@
     </div>
 
 
-    <!-- ========================================== -->
     <!-- OWNER CONTENT -->
-    <!-- ========================================== -->
 
     <div id="owner-content">
 
@@ -268,9 +265,7 @@
         <div class="container">
 
 
-            <!-- ====================================== -->
             <!-- BOT STATISTIKEN -->
-            <!-- ====================================== -->
 
             <div class="grid">
 
@@ -342,9 +337,7 @@
             </div>
 
 
-            <!-- ====================================== -->
             <!-- SERVER ÜBERSICHT -->
-            <!-- ====================================== -->
 
             <div class="section">
 
@@ -362,9 +355,7 @@
                 <div id="server-list">
 
                     <p style="color:#9ca3af;">
-
                         Server werden geladen...
-
                     </p>
 
                 </div>
@@ -372,9 +363,7 @@
             </div>
 
 
-            <!-- ====================================== -->
             <!-- GLOBALE BOT NACHRICHT -->
-            <!-- ====================================== -->
 
             <div class="section">
 
@@ -430,13 +419,11 @@
 
             .then(data => {
 
-
                 document.getElementById("loading").style.display =
                     "none";
 
 
                 if (data.allowed === true) {
-
 
                     document.getElementById("owner-content").style.display =
                         "block";
@@ -446,13 +433,12 @@
 
                     loadServers();
 
+                }
 
-                } else {
-
+                else {
 
                     document.getElementById("denied").style.display =
                         "block";
-
 
                 }
 
@@ -460,14 +446,12 @@
 
             .catch(() => {
 
-
                 document.getElementById("loading").style.display =
                     "none";
 
 
                 document.getElementById("denied").style.display =
                     "block";
-
 
             });
 
@@ -479,35 +463,27 @@
 
         function loadBotStats() {
 
-
             fetch("/api/bot-stats")
 
                 .then(response => response.json())
 
                 .then(data => {
 
-
                     if (!data.success) {
-
 
                         document.getElementById("bot-status").textContent =
                             "FEHLER";
 
-
                         document.getElementById("bot-server-count").textContent =
                             "?";
-
 
                         document.getElementById("member-count").textContent =
                             "?";
 
-
                         document.getElementById("bot-ping").textContent =
                             "?";
 
-
                         return;
-
                     }
 
 
@@ -526,28 +502,21 @@
                     document.getElementById("bot-ping").textContent =
                         data.statistics.ping + " ms";
 
-
                 })
 
-
                 .catch(() => {
-
 
                     document.getElementById("bot-status").textContent =
                         "FEHLER";
 
-
                     document.getElementById("bot-server-count").textContent =
                         "?";
-
 
                     document.getElementById("member-count").textContent =
                         "?";
 
-
                     document.getElementById("bot-ping").textContent =
                         "?";
-
 
                 });
 
@@ -561,17 +530,14 @@
 
         function loadServers() {
 
-
             fetch("/api/guilds")
 
                 .then(response => response.json())
 
                 .then(data => {
 
-
                     const list =
                         document.getElementById("server-list");
-
 
                     list.innerHTML = "";
 
@@ -581,22 +547,17 @@
                         data.servers.length === 0
                     ) {
 
-
                         list.innerHTML =
                             '<p style="color:#9ca3af;">Keine Server gefunden.</p>';
 
-
                         return;
-
                     }
 
 
                     data.servers.forEach(server => {
 
-
                         const box =
                             document.createElement("div");
-
 
                         box.className =
                             "server";
@@ -605,24 +566,21 @@
                         const icon =
                             document.createElement("img");
 
-
                         icon.className =
                             "server-icon";
 
 
                         if (server.icon) {
 
-
                             icon.src =
                                 `https://cdn.discordapp.com/icons/${server.id}/${server.icon}.png?size=128`;
 
+                        }
 
-                        } else {
-
+                        else {
 
                             icon.src =
                                 "https://cdn.discordapp.com/embed/avatars/0.png";
-
 
                         }
 
@@ -638,10 +596,8 @@
                         const name =
                             document.createElement("div");
 
-
                         name.className =
                             "server-name";
-
 
                         name.textContent =
                             server.name;
@@ -650,10 +606,8 @@
                         const id =
                             document.createElement("div");
 
-
                         id.className =
                             "server-id";
-
 
                         id.textContent =
                             server.id;
@@ -671,19 +625,14 @@
 
                         list.appendChild(box);
 
-
                     });
 
                 })
 
-
                 .catch(() => {
 
-
                     document.getElementById("server-list").innerHTML =
-
                         '<p class="error">⚠️ Server konnten nicht geladen werden.</p>';
-
 
                 });
 
@@ -697,14 +646,11 @@
 
         async function sendGlobalMessage() {
 
-
             const input =
                 document.getElementById("global-message");
 
-
             const result =
                 document.getElementById("message-result");
-
 
             const button =
                 document.getElementById("send-message");
@@ -716,91 +662,71 @@
 
             if (!message) {
 
-
                 result.textContent =
                     "⚠️ Bitte eine Nachricht eingeben.";
-
 
                 result.style.color =
                     "#f87171";
 
-
                 return;
-
             }
 
 
             if (message.length > 2000) {
 
-
                 result.textContent =
                     "⚠️ Die Nachricht darf maximal 2000 Zeichen haben.";
-
 
                 result.style.color =
                     "#f87171";
 
-
                 return;
-
             }
 
 
             const confirmed =
                 confirm(
-
-                    "📢 Soll diese Nachricht wirklich gesendet werden?\n\n" +
+                    "📢 Soll diese Nachricht wirklich an die Bot-Server gesendet werden?\n\n" +
                     message
-
                 );
 
 
             if (!confirmed) {
-
                 return;
-
             }
 
 
             button.disabled =
                 true;
 
-
             button.textContent =
                 "⏳ Wird gesendet...";
 
 
             result.textContent =
-                "";
+                "⏳ Nachricht wird gesendet...";
+
+            result.style.color =
+                "#9ca3af";
 
 
             try {
 
-
                 const response =
                     await fetch(
-
                         "/api/global-message",
-
                         {
-
                             method: "POST",
 
                             headers: {
-
                                 "Content-Type":
                                     "application/json"
-
                             },
 
                             body: JSON.stringify({
-
                                 message: message
-
                             })
-
                         }
-
                     );
 
 
@@ -810,10 +736,12 @@
 
                 if (data.success) {
 
+                    const stats =
+                        data.statistics;
+
 
                     result.textContent =
-                        `✅ Nachricht wurde erfolgreich vorbereitet.`;
-
+                        `✅ Nachricht gesendet! ${stats.sent} Server erreicht, ${stats.failed} fehlgeschlagen.`;
 
                     result.style.color =
                         "#4ade80";
@@ -822,35 +750,34 @@
                     input.value =
                         "";
 
+                }
 
-                } else {
-
+                else {
 
                     result.textContent =
                         "❌ " +
                         (
                             data.error ||
-                            "Nachricht konnte nicht verarbeitet werden."
+                            "Nachricht konnte nicht gesendet werden."
                         );
-
 
                     result.style.color =
                         "#f87171";
 
-
                 }
 
 
-            } catch (error) {
+            }
 
+            catch (error) {
+
+                console.error(error);
 
                 result.textContent =
-                    "❌ Verbindung zur API fehlgeschlagen.";
-
+                    "❌ Verbindung zur Global-Message-API fehlgeschlagen.";
 
                 result.style.color =
                     "#f87171";
-
 
             }
 
@@ -858,10 +785,8 @@
             button.disabled =
                 false;
 
-
             button.textContent =
                 "📢 Nachricht senden";
-
 
         }
 
@@ -870,4 +795,5 @@
 
 
 </body>
+
 </html>
