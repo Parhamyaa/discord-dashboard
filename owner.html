@@ -64,43 +64,99 @@
             color: #4ade80;
             font-weight: bold;
         }
+
+        #loading {
+            text-align: center;
+            margin-top: 100px;
+            color: #9aa8c7;
+        }
+
+        #denied {
+            display: none;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        #denied h1 {
+            color: #f87171;
+        }
+
+        #owner-content {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="header">
-        <h1>👑 PahoyaaSecurity Owner</h1>
-        <p>Owner-Bereich</p>
+    <div id="loading">
+        <h2>🔐 Owner-Berechtigung wird geprüft...</h2>
     </div>
 
-    <div class="container">
+    <div id="denied">
+        <h1>⛔ Zugriff verweigert</h1>
+        <p>Du hast keine Berechtigung für den Owner-Bereich.</p>
+        <a href="/" style="color:#4da3ff;">← Zurück zum Dashboard</a>
+    </div>
 
-        <div class="grid">
+    <div id="owner-content">
 
-            <div class="card">
-                <h2>🤖 Bot Status</h2>
-                <div class="value status">ONLINE</div>
-            </div>
+        <div class="header">
+            <h1>👑 PahoyaaSecurity Owner</h1>
+            <p>Owner-Bereich</p>
+        </div>
 
-            <div class="card">
-                <h2>🌐 Server</h2>
-                <div class="value">6</div>
-            </div>
+        <div class="container">
 
-            <div class="card">
-                <h2>🛡️ Security</h2>
-                <div class="value status">AKTIV</div>
-            </div>
+            <div class="grid">
 
-            <div class="card">
-                <h2>⚡ Bot</h2>
-                <div class="value">PahoyaaSecurity</div>
+                <div class="card">
+                    <h2>🤖 Bot Status</h2>
+                    <div class="value status">ONLINE</div>
+                </div>
+
+                <div class="card">
+                    <h2>🌐 Server</h2>
+                    <div class="value">6</div>
+                </div>
+
+                <div class="card">
+                    <h2>🛡️ Security</h2>
+                    <div class="value status">AKTIV</div>
+                </div>
+
+                <div class="card">
+                    <h2>⚡ Bot</h2>
+                    <div class="value">PahoyaaSecurity</div>
+                </div>
+
             </div>
 
         </div>
 
     </div>
+
+    <script>
+        fetch("/api/owner")
+            .then(response => response.json())
+            .then(data => {
+
+                document.getElementById("loading").style.display = "none";
+
+                if (data.allowed === true) {
+                    document.getElementById("owner-content").style.display = "block";
+                } else {
+                    document.getElementById("denied").style.display = "block";
+                }
+
+            })
+            .catch(() => {
+
+                document.getElementById("loading").style.display = "none";
+                document.getElementById("denied").style.display = "block";
+
+            });
+    </script>
 
 </body>
 </html>
